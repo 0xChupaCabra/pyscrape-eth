@@ -15,7 +15,7 @@ while a == True:
     hdr = {'User-Agent': 'Mozilla/5.0'}
     req = Request(site,headers=hdr)
     page = urlopen(req)
-    soup = BeautifulSoup(page)
+    soup = BeautifulSoup(page, "lxml")
     table = soup.findAll("table")
     rows = table[0].findChildren(['th', 'tr'])
     print("fetching page" + str(pagen))
