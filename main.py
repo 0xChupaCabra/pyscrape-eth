@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 from boltons import iterutils
 import csv
+import time
 
 site= "https://etherscan.io/token/generic-tokenholders2?a=0x622f2962ae78e8686ecc1e30cf2f9a6e5ac35626&s=0&p="
 hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -28,6 +29,7 @@ while pagen <= 10000:
                 break
             else:
                 tablerows.append(value)
+                time.sleep(2)
 
 newlist = iterutils.chunked(tablerows, 6)
 print(newlist)
