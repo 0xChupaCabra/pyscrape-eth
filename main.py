@@ -5,9 +5,7 @@ import csv
 import time
 
 site= "https://etherscan.io/token/generic-tokenholders2?a=0x622f2962ae78e8686ecc1e30cf2f9a6e5ac35626&s=0&p="
-hdr = {'User-Agent': 'Mozilla/5.0'}
-req = Request(site,headers=hdr)
-page = urlopen(req)
+
 tablerows = []
 
 pagen = 0
