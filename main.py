@@ -18,6 +18,7 @@ while pagen <= 10000:
     soup = BeautifulSoup(page)
     table = soup.findAll("table")
     rows = table[0].findChildren(['th', 'tr'])
+    time.sleep(2)
     for row in rows:
         cells = row.findChildren('td')
         for cell in cells:
@@ -27,7 +28,7 @@ while pagen <= 10000:
                 break
             else:
                 tablerows.append(value)
-                time.sleep(2)
+                
 
 newlist = iterutils.chunked(tablerows, 6)
 print(newlist)
