@@ -18,7 +18,7 @@ while a == True:
     soup = BeautifulSoup(page)
     table = soup.findAll("table")
     rows = table[0].findChildren(['th', 'tr'])
-    print("fetching page " + str(pagen))
+    print("fetching page" + str(pagen))
     time.sleep(2)
     for row in rows:
         cells = row.findChildren('td')
@@ -32,8 +32,9 @@ while a == True:
                 tablerows.append(value)
 
 newlist = iterutils.chunked(tablerows, 6)
-print(newlist)
 
+for x in newlist:
+    del x[-3:]
 with open('file.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerows(newlist)
