@@ -7,9 +7,9 @@ import time
 site= "https://etherscan.io/token/generic-tokenholders2?a=0x622f2962ae78e8686ecc1e30cf2f9a6e5ac35626&s=0&p="
 
 tablerows = []
-
+a = True
 pagen = 0
-while pagen <= 10000:
+while a == True:
     pagen += 1
     site= "https://etherscan.io/token/generic-tokenholders2?a=0x622f2962ae78e8686ecc1e30cf2f9a6e5ac35626&s=0&p="+str(pagen)
     hdr = {'User-Agent': 'Mozilla/5.0'}
@@ -18,6 +18,7 @@ while pagen <= 10000:
     soup = BeautifulSoup(page)
     table = soup.findAll("table")
     rows = table[0].findChildren(['th', 'tr'])
+    print("fetching page " + str(pagen))
     time.sleep(2)
     for row in rows:
         cells = row.findChildren('td')
@@ -25,10 +26,10 @@ while pagen <= 10000:
             rows_2 = []
             value = cell.string
             if value == 'There are no matching entries':
+                a = False
                 break
             else:
                 tablerows.append(value)
-                
 
 newlist = iterutils.chunked(tablerows, 6)
 print(newlist)
